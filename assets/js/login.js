@@ -30,8 +30,11 @@ $(function () {
     // 监听事件
     $('#form_reg').on('submit', function (e) {
         e.preventDefault();
-
-        $.post('http://ajax.frontend.itheima.net/api/reguser', { username: $('.reg-box [name=username]').val(), password: $('.reg-box [name=password]').val() },
+        var data = {
+            username: $('.reg-box [name=username]').val(),
+            password: $('.reg-box [name=password]').val()
+        }
+        $.post('/api/reguser', data,
             function (res) {
                 console.log(res);
                 if (res.status !== 0) {
@@ -49,7 +52,7 @@ $(function () {
 
         $.ajax({
 
-            url: 'http://ajax.frontend.itheima.net/api/login',
+            url: '/api/login',
             method: 'POST',
             data: $(this).serialize(),
             success: function (res) {
